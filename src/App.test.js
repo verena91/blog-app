@@ -1,8 +1,17 @@
+/* eslint-disable no-undef */
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+global.matchMedia = global.matchMedia || function () {
+  return {
+    addListener: jest.fn(),
+    removeListener: jest.fn(),
+  };
+};
+
+test('Home title', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const title = screen.getByText(/watches/i);
+  expect(title).toBeInTheDocument();
 });
