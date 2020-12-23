@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import {
-  render, screen, waitFor, act, cleanup,
+  render, waitFor,
 } from '@testing-library/react';
 import RemotePostList from './RemotePostList';
 

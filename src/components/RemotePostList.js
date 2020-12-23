@@ -28,14 +28,12 @@ function RemotePostList() {
   const [loading, setLoading] = useState();
   const [hasMore, setHasMore] = useState(true);
 
-  const getPosts = async (mounted) => {
+  const getPosts = async () => {
     const rsp = await axios.get(`${dummyURL}&apiKey=${Config.apiKey}&page=${page}`);
-    if (mounted) {
-      setPosts(posts.concat(rsp.data ? rsp.data.articles : []));
-      setTotal(rsp.data ? rsp.data.totalResults : 0);
-      setLoading(false);
-      setPage(page + 1);
-    }
+    setPosts(posts.concat(rsp.data ? rsp.data.articles : []));
+    setTotal(rsp.data ? rsp.data.totalResults : 0);
+    setLoading(false);
+    setPage(page + 1);
   };
 
   const handleInfiniteOnLoad = () => {
@@ -49,9 +47,7 @@ function RemotePostList() {
   };
 
   useEffect(() => {
-    let mounted = true;
-    getPosts(mounted);
-    return () => { mounted = false; };
+    getPosts();
   }, []);
 
   return (

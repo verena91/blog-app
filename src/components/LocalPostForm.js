@@ -72,7 +72,6 @@ function LocalPostForm({
   };
 
   const onFinish = (values) => {
-    console.log('Success:', values);
     if (post) {
       editPost(values);
       setPost(null);
@@ -83,8 +82,8 @@ function LocalPostForm({
     form.resetFields();
   };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
+  const onFinishFailed = () => {
+    message.warning('Required fields');
   };
 
   return (
