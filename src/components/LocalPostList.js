@@ -3,6 +3,8 @@ import {
   List, Spin, Space, Typography, Button, Tag, message, Row, Col,
 } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import ReactMarkdown from 'react-markdown';
+import gfm from 'remark-gfm';
 import LocalPostForm from './LocalPostForm';
 import './Posts.css';
 
@@ -105,7 +107,7 @@ function RemotePostList() {
               description={item.description}
             />
             <div style={styles.postBody}>
-              <div dangerouslySetInnerHTML={{ __html: item.content }} />
+              <ReactMarkdown plugins={[gfm]}>{item.content}</ReactMarkdown>
               <div style={styles.postBodyFooter}>
                 {item.author && item.author.split(',').map((a) => <Tag key={a} color="purple">{a}</Tag>)}
               </div>

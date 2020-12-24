@@ -1,7 +1,8 @@
+/* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import {
-  Modal, Form, Input, Button, Select, message,
+  Modal, Form, Input, Button, Select, message, Alert,
 } from 'antd';
 
 const { TextArea } = Input;
@@ -15,6 +16,8 @@ const styles = {
     justifyContent: 'space-evenly',
   },
 };
+
+const urlPattern = new RegExp('^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?');
 
 function LocalPostForm({
   visible, setVisible, post, setPost, refreshPosts,
@@ -124,6 +127,20 @@ function LocalPostForm({
           </Select>
         </Form.Item>
 
+        <Alert
+          style={{ margin: 5 }}
+          message={(
+            <div>
+              For more than one author use commas (,).
+              {' '}
+              <br />
+              {' '}
+              Example: Author 1, Author 2.
+            </div>
+          )}
+          type="info"
+          showIcon
+        />
         <Form.Item
           label="Author"
           name="author"
@@ -135,7 +152,10 @@ function LocalPostForm({
         <Form.Item
           label="URL"
           name="url"
-          rules={[{ required: true, message: 'Please input your url!' }]}
+          rules={[
+            { required: true, message: 'Please input your url!' },
+            { pattern: urlPattern, message: 'Please enter a valid url' },
+          ]}
         >
           <Input />
         </Form.Item>
@@ -143,7 +163,10 @@ function LocalPostForm({
         <Form.Item
           label="URL Image"
           name="urlToImage"
-          rules={[{ required: true, message: 'Please input your image url!' }]}
+          rules={[
+            { required: true, message: 'Please input your image url!' },
+            { pattern: urlPattern, message: 'Please enter a valid url' },
+          ]}
         >
           <Input />
         </Form.Item>
@@ -156,6 +179,19 @@ function LocalPostForm({
           <TextArea rows={2} />
         </Form.Item>
 
+        <Alert
+          style={{ margin: 5 }}
+          message={(
+            <div>
+              Content can be plain text or
+              {' '}
+              <a href="https://commonmark.org/help/" target="_blank">markdown</a>
+              .
+            </div>
+          )}
+          type="info"
+          showIcon
+        />
         <Form.Item
           label="Content"
           name="content"
