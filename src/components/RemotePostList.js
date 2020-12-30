@@ -9,7 +9,7 @@ import './Posts.css';
 import Config from '../config';
 
 const { Title } = Typography;
-const dummyURL = 'http://newsapi.org/v2/everything?q=watches&sortBy=publishedAt';
+const dummyURL = 'https://newsapi.org/v2/everything?q=watches&sortBy=publishedAt';
 
 const styles = {
   postBody: {
