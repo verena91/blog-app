@@ -11,10 +11,10 @@ import './Posts.css';
 const { Title } = Typography;
 // const dummyURL = 'http://newsapi.org/v2/everything?q=watches&sortBy=publishedAt';
 
-// if development
-const dummyURL = 'http://localhost:8080/v2';
-// if production
-// const dummyURL = 'http://3.133.149.114:8080/v2/everything?q=watches&sortBy=publishedAt';
+// development test
+// const dummyURL = 'http://localhost:8080/v2';
+// production test
+const dummyURL = 'http://3.133.149.114:8080/v2';
 
 const styles = {
   postBody: {
