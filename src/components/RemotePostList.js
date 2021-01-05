@@ -6,10 +6,15 @@ import {
 
 import InfiniteScroll from 'react-infinite-scroller';
 import './Posts.css';
-import Config from '../config';
+// import Config from '../config';
 
 const { Title } = Typography;
-const dummyURL = 'http://newsapi.org/v2/everything?q=watches&sortBy=publishedAt';
+// const dummyURL = 'http://newsapi.org/v2/everything?q=watches&sortBy=publishedAt';
+
+// if development
+const dummyURL = 'http://localhost:8080/v2';
+// if production
+// const dummyURL = 'http://3.133.149.114:8080/v2/everything?q=watches&sortBy=publishedAt';
 
 const styles = {
   postBody: {
@@ -29,7 +34,8 @@ function RemotePostList() {
   const [hasMore, setHasMore] = useState(true);
 
   const getPosts = async () => {
-    const rsp = await axios.get(`${dummyURL}&apiKey=${Config.apiKey}&page=${page}`);
+    // const rsp = await axios.get(`${dummyURL}&apiKey=${Config.apiKey}&page=${page}`);
+    const rsp = await axios.get(`${dummyURL}?page=${page}`);
     setPosts(posts.concat(rsp.data ? rsp.data.articles : []));
     setTotal(rsp.data ? rsp.data.totalResults : 0);
     setLoading(false);
